@@ -1,0 +1,128 @@
+=========================================================================
+GITHUB GUIDE WORKFLOW
+=========================================================================
+
+🔥 Correct Workflow to Start a New GitHub Project in VS Code
+
+========================================================
+✅ 1️⃣ CREATE A REPOSITORY ON GitHub
+    Go to GitHub and log in.
+    Click the "+" (plus sign) > New repository.
+    Enter a repository name (e.g., MyNewProject).
+    Do NOT check "Initialize this repository with a README" (we will do this locally).
+    Click "Create repository".
+    Copy the repository URL (it looks like https://github.com/your-username/MyNewProject.git).
+
+======================================================
+✅ 2️⃣ OPEN VS Code & NAVIGATE TO YOUR PROJECT FOLDER
+    Open Command Prompt (cmd) or PowerShell.
+    Navigate to where you keep your projects (e.g., C:\Users\jacub\Projects\).
+        powershell (CMD)
+
+            cd C:\Users\jacub\Projects
+        Create a new folder for the project:
+        powershell (CMD)
+
+            mkdir MyNewProject
+        Enter the new folder:
+        powershell (CMD)
+
+            cd MyNewProject
+========================================================
+✅ 3️⃣ !!! SET UP Git !!!(Only Once Per Computer) !!!
+    If you haven’t set up Git before, run these only once:
+        powershell (CMD)
+            git config --global user.name "Your Name"
+            git config --global user.email "your-email@example.com"
+        ✅ If you’ve done this before, skip this step!
+
+=========================================================
+✅ 4️⃣ INITIALIZE Git IN YOUR PROJECT
+    Now that you're inside your project folder (C:\Users\jacub\Projects\MyNewProject), initialize Git:
+        powershell (CMD)
+            git init
+        ✅ This creates a hidden .git folder inside the project.
+
+=========================================================
+✅ 5️⃣ CREATE A .gitignore FILE
+    Before adding files, create a .gitignore file to prevent tracking unnecessary files.
+
+        Option A/: Create it Manually in VS Code
+            Open VS Code.
+            Click File > New File.
+            Name it .gitignore.
+            Add this content:              
+                node_modules/
+                .vscode/
+                *.log
+                .DS_Store
+                .env
+            
+            Save the file.
+
+        Option 2: Create it Using Terminal
+            powershell (CMD)
+                echo "node_modules/" >> .gitignore
+
+========================================================
+✅ 6️⃣ ADD & COMMIT YOUR FILES
+    Now, stage and commit your project files:
+
+    Check which files Git is tracking:
+        powershell (CMD)
+            git status
+        
+    Stage (add) all files:
+        powershell (CMD)
+            git add .
+    Commit the changes:
+        powershell (CMD)
+            git commit -m "Initial commit - setting up project"
+
+=======================================================
+✅ 7️⃣ LINK  YOUR LOCAL REPO TO GitHub
+    Now, connect this project to GitHub:
+        powershell (CMD)
+            git remote add origin https://github.com/your-username/MyNewProject.git
+            git branch -M main
+            git push -u origin main
+        ✅ Your project is now live on GitHub! 🎉
+
+======================================================
+✅ 8️⃣ START WORKING ON YOUR PROJECT
+    Now you can start coding! Every time you make changes, do this:
+        A/ Check file changes:
+            powershell (CMD)
+                git status
+        B/ Add and commit changes:
+            powershell (CMD)
+                git add .
+                git commit -m "Describe what you changed"
+        C/ Push updates to GitHub
+            powershell (CMD)
+                git push
+        NOW IT SHOULD BE ONLINE ON GITHUB   
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+🔥 Managing Multiple Projects
+        Each project must be in its own folder (MyProject1, MyProject2, etc.).
+        Switch between projects by navigating to the correct folder:
+            powershell (CMD)
+                cd C:\Users\jacub\Projects\MyProject1
+        Initialize Git (git init) only inside project folders.
+        ✅ You don’t need to reset Git for each project—just open the right folder and start working.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+🎯 FINNAL SUMMARY (In Order)
+    1️⃣ Create a repository on GitHub (copy the repo URL).
+    2️⃣ Open VS Code & navigate to your project folder (cd C:\Users\jacub\Projects\MyNewProject).
+    3️⃣ Set up Git globally (only once per computer).
+    4️⃣ Run git init to start Git in the project.
+    5️⃣ Create a .gitignore file to ignore unnecessary files.
+    6️⃣ Add and commit files (git add . → git commit -m "Initial commit").
+    7️⃣ Connect to GitHub (git remote add origin <repo-url> → git push -u origin main).
+    8️⃣ Start working, commit changes, and push updates regularly.
+
+Now you have a clear step-by-step process! 🚀😃🔥

@@ -1,0 +1,152 @@
+
+
+ 1. HEADING h1 is IMPORTANT FOR GOOGLE for any other SEARCH ENGINES. Figuring out what our web page is about.
+
+ 2. THE values of  polygon(x y, x y, x y, x y) X starts from left to right, Y starts from top down
+    clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+
+ 3. positioning TRANSFORM: TRANSLATE(x, y);
+    .text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    /* !!! BECAUSE of declared positions in the CSS. 
+    Without the transform: translate(-50%, -50%) the .text-box class WOULD BE SHIFTED HALF 50% down and right. */
+
+ 4. ANIMATION, TRANSFORM: TRANSLATE(x, y);
+    It means the element moves in X and Y directions. The animation-timing-function: ease-in(ease-in-out, linear, step-start, cubic-bezier(0.1, 0.7, 1.0, 0.1), steps(4, end), frames(10))
+    When you do the animation it can be shaky sometimes. So you need to use backface-visibility: hidden;
+    It provides you not to shake with the animated element.
+
+    To use the animation again for different elements. You only write the animation: moveInLeft 1s ease-in; It will use the moveInLeft keyframes with speed 1s and ease-in.
+
+5. PSEUDO - ELEMENTS and PSEUDO - CLASSES (HOW and WHY TO USE THE ::after PSEUDO-ELEMENT) example how to use creative hover effect using the transition property.
+
+   .btn:link,
+   .btn:visited ARE the status of btn link, btn visited(these are states when you hover over the elementsbutton or anchor)
+
+   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   !!!! display: inline-block; Is inline block we use when we need ad aditional spacing padding around the element !!!!!!!
+   📌 Why Use inline-block?
+      ✔ Allows padding & margins to work properly.
+      ✔ Allows elements to sit side by side (unlike block, which forces a new line).
+      ✔ Works well with text-align: center; on the parent.
+    🔥 How It Works
+            The child is inline-block, so it stays inline but allows spacing.
+            text-align: center; on the parent makes the child align horizontally centered.
+    ✅ So yes! inline-block is perfect when you need padding & want to center elements with text-align: center;! 🚀😃   
+   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   !!! box-shadow: offset in the X direction, Y offset direction, blur, color rgba();
+   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+
+======================================================================================================================
+-=====================================================================================================================
+6. !!! THREE PILARS OF WRITE GOOD HTML AND CSS !!!!! 
+    A. RESPONSIVE DESIGN = Fluid Layouts
+                         = Media Queries
+                         = Responsive Images
+                         = Correct Units
+                         = Desktop-firsrt vs Mobile-firsrt
+
+
+    B. MAINTAINABLE AND SCALABLE CODE = Clean
+                                      = Easy-to-understand
+                                      = Growth
+                                      = Reusable
+                                      = How to organize files
+                                      = How to name CLASSES
+                                      = How to structure HTML
+    
+    C. WEB PERFORMANCE = Less HTTP requests (the user nedd download less data)
+                       = Less CODE
+                       = Compress CODE
+                       = Use a CSS preprocessor
+                       = Use less images (use only if necessary images for the site)
+                       = Compress images (less bandwidth for user) 
+
+============================================================================================================
+============================================================================================================
+
+7. WHAT HAPPENS TO CSS WHEN WE LOAD UP A WEBPAGE ON THE BROWSER WHEN USERS OPEN THE PAGE?
+      A. Laod HTML ----> Parse HTML ------------------------>  Document Object MODEL (DOM)  --------------->|
+                            |                                                                               |
+                            |                                                                               |
+                            |               PARSE CSS                                                       |
+                        Load CSS  -----> Resolve conflicting                                                |
+                                         CSS declarations (cascade)                                         |
+                                         ===========================   ---->  CSS Object Model              |
+                                         Process final CSS values           (CSSOM = CSS Object Model)----->|
+                                                                                                            |
+                                                                                                            |
+                                                                                                            |
+                          FINAL RENDERED <-------------------  Website rendering:       <----------------- RENDER TREE
+                            WEBSITE                        The visual formatting model
+=================================================================================================================
+==================================================================================================================
+
+8. SPECIFICITY IMPORTANCE
+      A. Inline styles
+      B. IDs
+      C. Classes, pseudo-classes, attribute
+      D. Elements, pseudo-elements
+    - So we calculate these (Inline, IDs, Classes, Elements).
+    - If all specificity is equal then the last declaration will be understand
+
+
+
+====================================================================================================
+  
+
+9. when is display: inline-block; the element is taken as a text so you format the position with the property text-align: center;  
+  
+  
+  
+  ============================  .COMPOSITION  =====================================
+
+
+
+
+
+================================== MEDIA QUERRY  ==================================
+
+
+
+
+
+================================= Responsive Images ========================
+
+We can control which image the browser loads by using the srcset attribute, which provides multiple image sources of different resolutions. 
+This technique is called density switching, where the browser selects the most appropriate image based on the device's pixel density (e.g., standard vs. high-resolution screens).
+
+If the viewport width is less than 600px (37.5em), the browser selects the appropriate image source based on the defined conditions. 
+If the viewport width is greater than 600px, we can specify a different image using srcset and media queries. This approach is known as art direction, where different images are used for different screen sizes to optimize composition and user experience.
+
+
++++++++++++++++++++++++++++++++++++++++++++++ Browser Compatibility Guide == Cross-Browser Support Checker ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   The page you're referring to helps you check which web features work in different browsers. This is typically called "browser compatibility" or "browser support".
+   These terms convey that the page helps users understand which web features are supported across various browsers.
+   GO TO WEB SITE www.caniuse.com It searches in what browser you can use what properties.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++ BUILDING PROCESS NodeJs in package.json file. Tasks for NodeJs ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"scripts": {
+    "sass": "sass --watch sass/main.scss:css/style.css",
+    "live-server": "live-server",
+    "start": "npm-run-all --parallel sass live-server",
+    "compile:sass": "node-sass sass/main.scss css/style.comp.css",
+    "concat:css": "concat -o css/style.concat.css css/icon-font.css css/style.comp.css"
+  },
+=========================================================================================
+
+"devDependencies": {
+    "autoprefixer": "^10.4.20",  for this you need have installed "post-cli" in dependencies
+    "concat": "^1.0.3",
+    "node-sass": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.85.1"
+  }
