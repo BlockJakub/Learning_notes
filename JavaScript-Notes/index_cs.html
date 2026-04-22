@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript learning Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="hero bg-primary text-white text-center py-5">
+        <h1>Javascript learning Notes</h1>
+        <img src="javascript.svg" alt="JavaScript Logo" class="img-fluid" width="268" height="268" />
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index_cs.html">JS Notes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index_cs.html">CZ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index_en.html">EN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="basics.html">Javascript Basics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="functions.html">Functions in Javascript</a></li>
+                    <li class="nav-item"><a class="nav-link" href="objects.html">Objects and Prototypes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="async.html">Asynchronous Javascript</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dom.html">DOM Manipulation</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-5">
+
+        <section class="mb-4">
+            <h2 class="text-primary">Porozumění bracket notaci v JavaScriptu</h2>
+            <p class="lead">
+                Bracket notation (závorková notace) je v JavaScriptu způsob, jak přistupovat
+                k vlastnostem objektů a prvkům polí pomocí hranatých závorek <code>[]</code>.
+                Nejde o pouhou syntaktickou alternativu, ale o důležitý nástroj pro dynamický a flexibilní kód.
+            </p>
+        </section>
+
+        <section class="mb-4">
+            <h3>Hlavní výhody bracket notace</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Přístup k vlastnostem s dynamickým názvem:
+                </li>
+                <pre class="bg-light p-3 rounded">
+const key = "age";
+console.log(user[key]); // Výstup: 29
+                </pre>
+
+                <li class="list-group-item">
+                    Práce s neplatnými názvy vlastností:
+                </li>
+                <pre class="bg-light p-3 rounded">
+const product = { "price-usd": 12 };
+console.log(product["price-usd"]); // Výstup: 12
+                </pre>
+
+                <li class="list-group-item">
+                    Skládání názvů vlastností za běhu:
+                </li>
+                <pre class="bg-light p-3 rounded">
+const mode = "Dark";
+console.log(settings["theme" + mode]); // Výstup: true
+                </pre>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h3>Kdy použít bracket notaci</h3>
+            <p>Bracket notace je ideální v situacích, kdy:</p>
+            <ul>
+                <li>Název vlastnosti je uložen v proměnné.</li>
+                <li>Název vlastnosti obsahuje mezery, pomlčky nebo speciální znaky.</li>
+                <li>Pracuješ s JSON daty, API nebo dynamickými datovými strukturami.</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h3>Praktický příklad</h3>
+            <p>Zvaž následující scénář:</p>
+            <pre class="bg-light p-3 rounded">
+const user = {
+    name: "Alice",
+    age: 25,
+    "email-address": "alice@example.com"
+};
+
+const property = "email-address";
+console.log(user[property]); // Výstup: alice@example.com
+            </pre>
+        </section>
+
+        <section class="alert alert-info">
+            <strong>Tip:</strong>
+            Tečkovou notaci používej pro jednoduchost, pokud je název vlastnosti známý a platný.
+            Bracket notaci používej tam, kde potřebuješ flexibilitu a dynamické chování.
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
