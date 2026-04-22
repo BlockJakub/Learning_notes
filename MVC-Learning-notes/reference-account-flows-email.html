@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Dive: Comprehensive MVC Email Flows (Bootstrap 5)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- 
+        1. THE NAVBAR (Global Navigation) 
+        This will appear on all your pages for easy switching.
+    -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <!-- UPDATED Brand Name -->
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-code-square me-2"></i> Dev Learning Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Home Page -->
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <!-- MVC Deep Dive Pages -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMVC" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            MVC Architecture
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMVC">
+                            <!-- UPDATED LINKS -->
+                            <li><a class="dropdown-item" href="reference-mvc-theory.html">7-Stage MVC Theory</a></li>
+                            <li><a class="dropdown-item" href="guide-mvc-code-flow.html">MVC Code Example</a></li>
+                            <li><a class="dropdown-item" href="guide-fetch-api.html">AJAX/Fetch API Bridge</a></li>
+                            <li><a class="dropdown-item" href="reference-account-flows-email.html">Comprehensive Email
+                                    Flows</a></li>
+                        </ul>
+                    </li>
+                    <!-- Security/Data Pages -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSecurity" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Security & Data
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownSecurity">
+                            <!-- UPDATED LINKS -->
+                            <li><a class="dropdown-item" href="guide-pdo-security.html">Secure PDO Statements</a></li>
+                            <li><a class="dropdown-item" href="reference-sql-schema.html">SQL Schema Deep Dive</a></li>
+                        </ul>
+                    </li>
+                    <!-- REMOVED redundant 'learning_homepage.html' link -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container-fluid jumbotron-custom text-center">
+        <div class="container">
+            <h1 class="display-4"><i class="bi bi-person-lock"></i> MVC for User and Email Flows</h1>
+            <p class="lead">Applying the **Model-View-Controller** pattern to common account and communication tasks.
+            </p>
+            <p class="font-italic">Separating logic from presentation is critical for secure authentication and data
+                handling.</p>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4 text-dark"><i class="bi bi-diagram-3-fill"></i> Functional Groupings of MVC Actions
+        </h2>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="flow-key-card">
+                    <h4 class="mb-3"><i class="bi bi-share-fill"></i> General Request/Email Flow Key</h4>
+                    <div class="d-flex justify-content-center align-items-center flex-wrap text-center">
+                        <div class="p-2">
+                            <i class="bi bi-person-circle flow-arrow text-info"></i>
+                            <span class="flow-stage">1. User Action (View)</span>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-arrow-right flow-arrow"></i>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-command flow-arrow text-primary"></i>
+                            <span class="flow-stage">2. Controller (Route & Delegate)</span>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-arrow-right flow-arrow"></i>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-briefcase-fill flow-arrow text-success"></i>
+                            <span class="flow-stage">3. Model/Service (Logic/Data)</span>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-arrow-right flow-arrow"></i>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-envelope-fill flow-arrow text-danger"></i>
+                            <span class="flow-stage">4. Email Queue/SMTP (Send)</span>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-arrow-left flow-arrow"></i>
+                        </div>
+                        <div class="p-2">
+                            <i class="bi bi-check2-circle flow-arrow text-warning"></i>
+                            <span class="flow-stage">5. Final Response (View)</span>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-center"><small class="text-white-50">*This high-level flow is adapted in
+                            the cards below to show specific security and data actions.</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+            <div class="col">
+                <div class="card step-card border-start border-5 border-success">
+                    <div class="card-body">
+                        <div class="step-header text-success">
+                            <span class="step-icon text-success"><i class="bi bi-person-plus-fill"></i></span>
+                            <h5 class="card-title fw-bold">1. ACCOUNT CREATION (Register)</h5>
+                            <span class="badge bg-success">Transactional Email Trigger</span>
+                        </div>
+                        <div class="step-content">
+                            <p class="level-header">USER ACTION: **Register**</p>
+                            <p class="level-text">User submits registration form with email and password.</p>
+
+                            <p class="level-header">MVC FLOW: **Controller <i class="bi bi-arrow-right"></i> Model <i
+                                    class="bi bi-arrow-right"></i> Email**</p>
+                            <p class="level-text">The **UserController** calls a **UserService** method
+                                (`registerUser`). The Service creates the user record (**Model**) with an `is_verified`
+                                flag set to `false`. It then generates a **unique, time-sensitive token** and calls the
+                                **EmailService** to send a **Verification Link** to the user's email address.</p>
+
+                            <p class="level-header">CRITICAL ACTION: **Verification Link Click**</p>
+                            <p class="level-text">The link routes to `AuthController->verify(token)`. The **Model**
+                                validates the token against the database. If successful, the `is_verified` flag is set
+                                to `true`, and the **View** shows a "Success" message.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card step-card border-start border-5 border-primary">
+                    <div class="card-body">
+                        <div class="step-header text-primary">
+                            <span class="step-icon text-primary"><i class="bi bi-fingerprint"></i></span>
+                            <h5 class="card-title fw-bold">2. AUTHENTICATION (Login / 2FA)</h5>
+                            <span class="badge bg-primary">Security-Critical Flow</span>
+                        </div>
+                        <div class="step-content">
+                            <p class="level-header">USER ACTION: **Login**</p>
+                            <p class="level-text">User submits credentials.</p>
+
+                            <p class="level-header">MVC FLOW: **Controller <i class="bi bi-arrow-right"></i> AuthModel
+                                <i class="bi bi-arrow-right"></i> Session**
+                            </p>
+                            <p class="level-text">The **AuthController** calls the **AuthModel** to verify credentials
+                                against the **hashed password**. If successful, it creates a **session** (or JWT) and
+                                redirects to the dashboard **View**.</p>
+
+                            <p class="level-header">2FA ACTION: **Second Authentication**</p>
+                            <p class="level-text">If 2FA is enabled, the **AuthModel** generates a 6-digit code, stores
+                                it with an expiration, and the **EmailService** sends the code to the user. The login
+                                flow pauses until the user submits the correct code from a follow-up **View**.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card step-card border-start border-5 border-warning">
+                    <div class="card-body">
+                        <div class="step-header text-warning">
+                            <span class="step-icon text-warning"><i class="bi bi-key-fill"></i></span>
+                            <h5 class="card-title fw-bold">3. ACCOUNT MANAGEMENT (Password Reset)</h5>
+                            <span class="badge bg-warning">Security Token Flow</span>
+                        </div>
+                        <div class="step-content">
+                            <p class="level-header">USER ACTION: **Forgot Password**</p>
+                            <p class="level-text">User enters email on the password reset **View**.</p>
+
+                            <p class="level-header">MVC FLOW: **Controller <i class="bi bi-arrow-right"></i> Model <i
+                                    class="bi bi-arrow-right"></i> Email**</p>
+                            <p class="level-text">The **PasswordController** calls a **TokenModel** to generate a
+                                single-use, short-lived (e.g., 15 minute) **password reset token** linked to the user.
+                                The **EmailService** sends the token embedded in a URL to the user's registered email
+                                address.</p>
+
+                            <p class="level-header">CRITICAL ACTION: **Password Update**</p>
+                            <p class="level-text">The user clicks the link, which is processed by the **Controller**. If
+                                the token is valid, the **View** shows the "New Password" form. The **Model** then
+                                **hashes and updates** the password and immediately **invalidates the token**.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card step-card border-start border-5 border-info">
+                    <div class="card-body">
+                        <div class="step-header text-info">
+                            <span class="step-icon text-info"><i class="bi bi-pencil-square"></i></span>
+                            <h5 class="card-title fw-bold">4. MAILBOX OPERATION (Write / Sent)</h5>
+                            <span class="badge bg-info">Content and Persistence Flow</span>
+                        </div>
+                        <div class="content-text">
+                            <p class="level-header">USER ACTION: **Write & Send Email**</p>
+                            <p class="level-text">User completes the composition form and clicks "Send."</p>
+
+                            <p class="level-header">MVC FLOW: **Controller <i class="bi bi-arrow-right"></i> Model <i
+                                    class="bi bi-arrow-right"></i> EmailService**</p>
+                            <p class="level-text">The **MailController** receives the composed message. It passes the
+                                raw message body and metadata (to, subject) to the **MessageModel**. The Model first
+                                **persists** the message in the database (with status `sent`) and then calls the
+                                external **EmailService** for delivery.</p>
+
+                            <p class="level-header">PROFESSIONAL TIP: **Asynchronous Send**</p>
+                            <p class="level-text">To prevent the user from waiting, the Controller should **queue** the
+                                actual sending process immediately after the Model saves the message. The user is
+                                redirected to the **Sent Items View** instantly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card step-card border-start border-5 border-teal" style="border-color: var(--bs-teal);">
+                    <div class="card-body">
+                        <div class="step-header text-teal" style="color: var(--bs-teal);">
+                            <span class="step-icon" style="color: var(--bs-teal);"><i
+                                    class="bi bi-trash-fill"></i></span>
+                            <h5 class="card-title fw-bold">5. MAILBOX MANAGEMENT (Receive / Delete)</h5>
+                            <span class="badge bg-teal" style="background-color: var(--bs-teal);">Display and Data
+                                Access Flow</span>
+                        </div>
+                        <div class="content-text">
+                            <p class="level-header">USER ACTION: **Receive / View Mail**</p>
+                            <p class="level-text">User loads the Inbox **View**.</p>
+
+                            <p class="level-header">MVC FLOW: **Controller <i class="bi bi-arrow-right"></i> Model <i
+                                    class="bi bi-arrow-right"></i> View**</p>
+                            <p class="level-text">The **MailController** requests a list of messages from the
+                                **MessageModel**. The Model queries the database for emails belonging to the user
+                                (`recipient_id = current_user_id`) and returns the data. The **Inbox View** iterates
+                                over this data to display the list of received emails.</p>
+
+                            <p class="level-header">USER ACTION: **Delete**</p>
+                            <p class="level-text">The **MailController** calls the **MessageModel**'s
+                                `deleteMessage(id)` method. The Model typically performs a **soft delete** (setting an
+                                `is_deleted` flag to true) rather than permanent destruction, ensuring data recovery is
+                                possible. The **View** is refreshed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card step-card border-start border-5 border-dark text-center py-4">
+                    <div class="card-body">
+                        <div class="step-header text-dark">
+                            <span class="step-icon text-dark"><i class="bi bi-shield-lock-fill"></i></span>
+                            <h5 class="card-title fw-bold">Developer Focus: Security and Separation</h5>
+                        </div>
+                        <p class="lead mt-3">All these flows emphasize **Separation of Concerns**.</p>
+                        <p class="text-muted">The **Controller** only manages the flow. The **Model** handles the heavy
+                            lifting of password hashing, token validation, and database access. The **View** simply
+                            displays the result or the input form, ensuring a **secure and maintainable** application.
+                        </p>
+                        <span class="badge bg-dark">Crucial for PHP, Java, and C++ (Security-Critical Apps)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="alert alert-info mt-5" role="alert">
+            <h4 class="alert-heading"><i class="bi bi-gear-fill"></i> Next Steps for Your Project</h4>
+            <p>To implement these features, you will need to master:</p>
+            <ul>
+                <li>**Form Handling:** Securing form submissions (CSRF tokens).</li>
+                <li>**Database Integration:** Using **PDO** (PHP) or an **ORM** for secure data access.</li>
+                <li>**Password Hashing:** Always using functions like `password_hash()` (PHP) or similar library
+                    functions in C++/Java.</li>
+            </ul>
+        </div>
+
+    </div>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0"><small>&copy; 2025 Deep-Dive MVC Guide | Account Flows</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
