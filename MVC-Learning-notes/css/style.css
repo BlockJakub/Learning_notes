@@ -1,0 +1,240 @@
+/* 1. Root Variables (Merged from all files) */
+:root {
+    --bs-blue-dark: #1f4287;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-gray-dark: #343a40;
+    --bs-primary-light: #8d43ff;
+}
+
+/* 2. Jumbotron / Header Styles (Standardized) */
+.jumbotron-custom {
+    /* Standardized on the most common gradient */
+    background: linear-gradient(90deg, #6610f2 0%, #1f4287 100%);
+    color: white;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+}
+
+/* From index.html - used for its Jumbotron */
+.bg-gradient-custom {
+    background: linear-gradient(90deg, var(--bs-indigo) 0%, var(--bs-blue-dark) 100%);
+    color: white;
+}
+
+/* 3. Card Styles (Merged & Standardized) */
+.step-card,
+.card-custom,
+.code-card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.step-card {
+    min-height: 480px;
+    /* Standardized min-height for card consistency */
+    justify-content: flex-start;
+}
+
+.card-custom {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    min-height: 100%;
+}
+
+.step-card:hover,
+.card-custom:hover,
+.code-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-link {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 5px solid var(--bs-indigo);
+}
+
+.card-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    border-color: var(--bs-blue-dark);
+}
+
+/* 4. Card Content Styles (Merged) */
+.step-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.step-header {
+    border-bottom: 3px solid;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.level-header {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--bs-indigo);
+}
+
+.level-text {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.code-title {
+    background-color: var(--bs-indigo);
+    color: white;
+    padding: 1rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* 5. Code & Text Styles */
+pre {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 0.85em;
+    margin-bottom: 0;
+    color: var(--bs-gray-dark);
+}
+
+code {
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    white-space: pre-wrap;
+}
+
+.code-block {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-size: 0.85em;
+    overflow-x: auto;
+    border: 1px solid #dee2e6;
+}
+
+/* 6. Unique Component Styles */
+
+/* From index.html */
+.text-indigo {
+    color: var(--bs-indigo) !important;
+}
+
+/* From guide-fetch-api.html */
+.form-control:focus,
+.btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 16, 242, 0.25);
+    /* Indigo focus */
+}
+
+.php-response {
+    border-left: 5px solid var(--bs-teal);
+    background-color: #e6fffa;
+}
+
+.step-heading {
+    color: var(--bs-indigo);
+    font-weight: bold;
+}
+
+/* From reference-account-flows-email.html */
+.flow-key-card {
+    background-color: var(--bs-blue-dark);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.flow-key-card h4 {
+    color: var(--bs-yellow);
+}
+
+.flow-arrow {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--bs-teal);
+    margin: 0 10px;
+}
+
+/* Renamed to avoid conflicts */
+.flow-stage-email {
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+    color: white;
+}
+
+/* From guide-mvc-code-flow.html */
+.flow-stage {
+    font-weight: bold;
+    color: var(--bs-blue-dark);
+}
+
+/* From multiple files */
+.badge-jargon {
+    background-color: var(--bs-pink);
+    color: white;
+}
+
+/* From learning_homepage.html */
+.learning-card {
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.learning-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--bs-indigo);
+}
+
+.card-header-custom {
+    background-color: #f7f9fc;
+    border-bottom: 2px solid var(--bs-indigo);
+    padding: 1rem 1.5rem;
+}
+
+.tag-beginner {
+    background-color: var(--bs-teal);
+}
+
+.tag-advanced {
+    background-color: var(--bs-blue-dark);
+}
+
+.btn-custom {
+    background-color: var(--bs-indigo);
+    border-color: var(--bs-indigo);
+    transition: background-color 0.2s;
+}
+
+.btn-custom:hover {
+    background-color: var(--bs-primary-light);
+    border-color: var(--bs-primary-light);
+}
