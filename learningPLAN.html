@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jakub’s Daily Coding Plan — Bootstrap 5</title>
+    <meta name="description"
+        content="A truthful, focused learning roadmap for web development. Check off tasks, track progress, and print." />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #74c0fc;
+        }
+
+        body {
+            background: radial-gradient(1200px 800px at -10% -10%, rgba(116, 192, 252, .15), transparent), #0b1020;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(116, 192, 252, .15), rgba(56, 217, 169, .12));
+            border: 1px solid rgba(116, 192, 252, .25);
+        }
+
+        .checklist input[type="checkbox"] {
+            transform: scale(1.1);
+            margin-right: .5rem;
+        }
+
+        .section-card {
+            border: 1px solid rgba(116, 192, 252, .25);
+        }
+
+        .sticky-tools {
+            position: sticky;
+            top: .5rem;
+            z-index: 1030;
+        }
+
+        .today-badge {
+            background: rgba(56, 217, 169, .15);
+            border: 1px solid rgba(56, 217, 169, .35);
+        }
+
+        .muted {
+            color: #a9b4d0;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark border-bottom border-secondary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Jakub’s Daily Coding Plan</a>
+            <div class="d-flex gap-2 no-print">
+                <button id="btnToday" class="btn btn-outline-info btn-sm">Today’s Focus</button>
+                <button id="btnReset" class="btn btn-outline-warning btn-sm" title="Clear all checkboxes">Reset</button>
+                <button class="btn btn-primary btn-sm" onclick="window.print()">Print / PDF</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container my-4">
+        <div class="p-4 rounded hero">
+            <h1 class="h3 mb-2">Truthful Roadmap — Beginner ➜ Junior</h1>
+            <p class="mb-0 muted">Daily, small, finished steps. No hype, no shortcuts. Check items as you complete them;
+                your progress saves in this browser.</p>
+
+            <p>“Code breaks. That’s its way of teaching.”</p>
+
+        </div>
+    </header>
+
+    <main class="container pb-5">
+        <!-- Overall progress -->
+        <div class="row g-3 align-items-center mb-4">
+            <div class="col-lg-8">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h2 class="h5 mb-0">Overall Progress</h2>
+                            <span id="overallPct" class="badge rounded-pill text-bg-info">0%</span>
+                        </div>
+                        <div class="progress" role="progressbar" aria-label="Overall progress">
+                            <div id="overallBar" class="progress-bar bg-info" style="width:0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="small text-uppercase text-secondary">Today</div>
+                                <div id="todayFocus" class="fw-semibold">—</div>
+                            </div>
+                            <span class="badge rounded-pill today-badge">Daily Focus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sections -->
+        <div class="row g-4">
+            <!-- 1. JavaScript Mastery -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">1) JavaScript Mastery (Client Logic)</h3>
+                            <span class="badge text-bg-secondary" id="sec1Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Make pages interactive. DOM, events, fetch/JSON, promises, async/await.
+                        </p>
+                        <ul class="list-unstyled checklist" id="sec1">
+                            <li><label><input type="checkbox" data-key="s1_dom">Deep DOM: query, create, classes,
+                                    attributes</label></li>
+                            <li><label><input type="checkbox" data-key="s1_events">Events: click, input, submit;
+                                    preventDefault</label></li>
+                            <li><label><input type="checkbox" data-key="s1_fetch">fetch() basics: GET JSON and render
+                                    list</label></li>
+                            <li><label><input type="checkbox" data-key="s1_post">POST form data to PHP; render
+                                    response</label></li>
+                            <li><label><input type="checkbox" data-key="s1_async">Promises & async/await
+                                    refactor</label></li>
+                            <li><label><input type="checkbox" data-key="s1_widget">Build: live search or filter
+                                    widget</label></li>
+                        </ul>
+                        <div class="progress" aria-label="Section 1 progress">
+                            <div class="progress-bar" id="bar1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Backend & Security -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">2) Backend Logic & Security (PHP)</h3>
+                            <span class="badge text-bg-secondary" id="sec2Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Make the server safe and predictable. Sessions, hashing, prepared
+                            statements.</p>
+                        <ul class="list-unstyled checklist" id="sec2">
+                            <li><label><input type="checkbox" data-key="s2_sessions">Sessions & cookies for
+                                    login</label></li>
+                            <li><label><input type="checkbox" data-key="s2_hash">Password hashing
+                                    (password_hash/verify)</label></li>
+                            <li><label><input type="checkbox" data-key="s2_prep">Prepared statements everywhere</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s2_uploads">Secure file uploads (Family
+                                    Album)</label></li>
+                            <li><label><input type="checkbox" data-key="s2_mvc">Folder/MVC structure:
+                                    public/includes</label></li>
+                            <li><label><input type="checkbox" data-key="s2_api">Tiny JSON API endpoint (list
+                                    items)</label></li>
+                        </ul>
+                        <div class="progress" aria-label="Section 2 progress">
+                            <div class="progress-bar" id="bar2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Database Design -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">3) Database Design (MySQL)</h3>
+                            <span class="badge text-bg-secondary" id="sec3Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Clean tables, clear relations. JOINs for power, indexes for speed.</p>
+                        <ul class="list-unstyled checklist" id="sec3">
+                            <li><label><input type="checkbox" data-key="s3_norm">Normalization: identify repeated
+                                    data</label></li>
+                            <li><label><input type="checkbox" data-key="s3_joins">JOIN practice across 2–3
+                                    tables</label></li>
+                            <li><label><input type="checkbox" data-key="s3_fk">Understand foreign keys
+                                    (conceptually)</label></li>
+                            <li><label><input type="checkbox" data-key="s3_index">Add basic indexes where needed</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s3_queries">Filter/sort queries for UI
+                                    lists</label></li>
+                        </ul>
+                        <div class="progress" aria-label="Section 3 progress">
+                            <div class="progress-bar" id="bar3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Git & GitHub -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">4) Version Control (Git & GitHub)</h3>
+                            <span class="badge text-bg-secondary" id="sec4Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Move confidently: branches, merges, and meaningful commits.</p>
+                        <ul class="list-unstyled checklist" id="sec4">
+                            <li><label><input type="checkbox" data-key="s4_branch">Create & switch branches</label></li>
+                            <li><label><input type="checkbox" data-key="s4_merge">Merge a feature branch</label></li>
+                            <li><label><input type="checkbox" data-key="s4_conflict">Resolve a simple conflict</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s4_messages">Write clear commit messages</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s4_readme">README with setup steps</label></li>
+                        </ul>
+                        <div class="progress" aria-label="Section 4 progress">
+                            <div class="progress-bar" id="bar4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Front-End Polish -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">5) Front‑End Polish</h3>
+                            <span class="badge text-bg-secondary" id="sec5Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Grid & Flexbox depth, a11y basics, performance habits, design tokens.</p>
+                        <ul class="list-unstyled checklist" id="sec5">
+                            <li><label><input type="checkbox" data-key="s5_grid">Grid & Flex: complex layouts</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s5_a11y">Accessibility: labels, semantics, tab
+                                    order</label></li>
+                            <li><label><input type="checkbox" data-key="s5_perf">Performance: minify, compress,
+                                    lazy-load</label></li>
+                            <li><label><input type="checkbox" data-key="s5_tokens">SCSS tokens: colors, spacing, type
+                                    scale</label></li>
+                            <li><label><input type="checkbox" data-key="s5_responsive">Responsive images
+                                    (srcset/sizes)</label></li>
+                        </ul>
+                        <div class="progress" aria-label="Section 5 progress">
+                            <div class="progress-bar" id="bar5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Mental Model -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">6) Mental Model & Debugging</h3>
+                            <span class="badge text-bg-secondary" id="sec6Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Calm debugging, browser rendering model, HTTP basics.</p>
+                        <ul class="list-unstyled checklist" id="sec6">
+                            <li><label><input type="checkbox" data-key="s6_errors">Read stack traces & network
+                                    errors</label></li>
+                            <li><label><input type="checkbox" data-key="s6_render">Understand
+                                    reflow/repaint/paint</label></li>
+                            <li><label><input type="checkbox" data-key="s6_http">HTTP methods & status codes</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s6_cli">Use terminal for basic tasks</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s6_explain">Rubber‑duck: explain code
+                                    aloud</label></li>
+                        </ul>
+                        <div class="progress" aria-label="Section 6 progress">
+                            <div class="progress-bar" id="bar6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Project Structure & Deployment -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">7) Project Structure & Deployment</h3>
+                            <span class="badge text-bg-secondary" id="sec7Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Organize folders, configs, and simple build scripts.</p>
+                        <ul class="list-unstyled checklist" id="sec7">
+                            <li><label><input type="checkbox" data-key="s7_folders">Public/includes/assets split</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s7_env">Use config / .env for secrets</label>
+                            </li>
+                            <li><label><input type="checkbox" data-key="s7_npm">NPM scripts: sass, prefix,
+                                    minify</label></li>
+                            <li><label><input type="checkbox" data-key="s7_deploy">Repeatable deploy to
+                                    Cloud/hosting</label></li>
+                            <li><label><input type="checkbox" data-key="s7_logs">Read logs, rollback if needed</label>
+                            </li>
+                        </ul>
+                        <div class="progress" aria-label="Section 7 progress">
+                            <div class="progress-bar" id="bar7"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Next Frontier -->
+            <div class="col-12 col-lg-6">
+                <div class="card section-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h5 mb-0">8) Next Frontier — Framework (later)</h3>
+                            <span class="badge text-bg-secondary" id="sec8Pct">0%</span>
+                        </div>
+                        <p class="mb-3 muted">Only after vanilla JS feels natural.</p>
+                        <ul class="list-unstyled checklist" id="sec8">
+                            <li><label><input type="checkbox" data-key="s8_prereq">Prereq: comfortable with
+                                    fetch/async</label></li>
+                            <li><label><input type="checkbox" data-key="s8_pick">Pick one: React or Vue</label></li>
+                            <li><label><input type="checkbox" data-key="s8_component">Build a tiny component
+                                    (cards)</label></li>
+                            <li><label><input type="checkbox" data-key="s8_state">State: form + list filtering</label>
+                            </li>
+                        </ul>
+                        <div class="progress" aria-label="Section 8 progress">
+                            <div class="progress-bar" id="bar8"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5 text-secondary small">
+            Built for truth and momentum. Keep going, Jakub. Small steps, finished daily.
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // --- Persistence helpers ---
+        const STORAGE_KEY = 'jj-roadmap-v1';
+        const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+        function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+        function setupSection(sectionId, barId, pctId) {
+            const ul = document.getElementById(sectionId);
+            const bar = document.getElementById(barId);
+            const pct = document.getElementById(pctId);
+            const inputs = ul.querySelectorAll('input[type="checkbox"]');
+            inputs.forEach(inp => {
+                const key = inp.dataset.key;
+                if (key in state) inp.checked = !!state[key];
+                inp.addEventListener('change', () => { state[key] = inp.checked; save(); render(); });
+            });
+            return () => {
+                const total = inputs.length;
+                const done = Array.from(inputs).filter(i => i.checked).length;
+                const percent = Math.round(done / Math.max(total, 1) * 100);
+                bar.style.width = percent + '%';
+                pct.textContent = percent + '%';
+                return { total, done };
+            };
+        }
+
+        const sections = [
+            ['sec1', 'bar1', 'sec1Pct'], ['sec2', 'bar2', 'sec2Pct'], ['sec3', 'bar3', 'sec3Pct'], ['sec4', 'bar4', 'sec4Pct'],
+            ['sec5', 'bar5', 'sec5Pct'], ['sec6', 'bar6', 'sec6Pct'], ['sec7', 'bar7', 'sec7Pct'], ['sec8', 'bar8', 'sec8Pct']
+        ].map(ids => setupSection(...ids));
+
+        function render() {
+            // per-section
+            const counts = sections.map(fn => fn());
+            // overall
+            const sumTotal = counts.reduce((a, c) => a + c.total, 0);
+            const sumDone = counts.reduce((a, c) => a + c.done, 0);
+            const overallPct = Math.round(sumDone / Math.max(sumTotal, 1) * 100);
+            document.getElementById('overallBar').style.width = overallPct + '%';
+            document.getElementById('overallPct').textContent = overallPct + '%';
+        }
+
+        // Today’s focus (deterministic by weekday)
+        const focusByDay = [
+            'Front‑End Polish (Grid, a11y, performance)', // Sunday
+            'JavaScript: DOM & events practice',           // Monday
+            'Backend & Security: sessions + hashing',      // Tuesday
+            'Database design: JOINs & queries',            // Wednesday
+            'Git & GitHub: branches + README',             // Thursday
+            'Project structure & simple deploy',           // Friday
+            'Review & refactor: clean up one project'      // Saturday
+        ];
+        function setTodayFocus() {
+            const d = new Date().getDay();
+            document.getElementById('todayFocus').textContent = focusByDay[d];
+        }
+
+        // Reset
+        document.getElementById('btnReset').addEventListener('click', () => {
+            if (!confirm('Clear all progress?')) return;
+            Object.keys(state).forEach(k => delete state[k]);
+            save();
+            document.querySelectorAll('input[type="checkbox"]').forEach(i => i.checked = false);
+            render();
+        });
+
+        // Jump to today’s suggested section
+        document.getElementById('btnToday').addEventListener('click', () => {
+            const d = new Date().getDay();
+            const idByDay = ['sec5', 'sec1', 'sec2', 'sec3', 'sec4', 'sec7', 'sec6'];
+            const el = document.getElementById(idByDay[d]);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        setTodayFocus();
+        render();
+    </script>
+</body>
+
+</html>
